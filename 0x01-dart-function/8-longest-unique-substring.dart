@@ -1,25 +1,33 @@
 String longestUniqueSubstring(String str) {
-  if (str.isEmpty) {
-    return "";
-  }
+  int n = str.length;
+  String longestSubstring = "";
+  String currentSubstring = "";
 
-  int start = 0;
-  int maxLength = 0;
-  Map<String, int> charIndexMap = {};
+  // Mapa para almacenar la última posición de cada carácter en la cadena.
+  Map<String, int> lastSeen = {};
 
-  for (int i = 0; i < str.length; i++) {
-    String currentChar = str[i];
+  int start = 0; // Inicio de la subcadena actual.
 
-    if (charIndexMap.containsKey(currentChar) && charIndexMap[currentChar] != null && charIndexMap[currentChar]! >= start) {
-      start = charIndexMap[currentChar]! + 1;
+  for (int end = 0; end < n; end++) {
+    String currentChar = str[end];
+
+    // Si el carácter ya está en la subcadena actual,
+    // actualizamos el inicio de la subcadena.
+    if (lastSeen.containsKey(currentChar) && lastSeen[currentChar] >= start) {
+      start = lastSeen[currentChar] + 1;
     }
 
-    charIndexMap[currentChar] = i;
+    // Agregamos el carácter a la subcadena actual.
+    currentSubstring = str.substring(start, end + 1);
 
-    if (i - start + 1 > maxLength) {
-      maxLength = i - start + 1;
+    // Verificamos si la subcadena actual es más larga que la subcadena más larga hasta ahora.
+    if (currentSubstring.length > longestSubstring.length) {
+      longestSubstring = currentSubstring;
     }
+
+    // Actualizamos la última posición vista del carácter.
+    lastSeen[currentChar] = end;
   }
 
-  return str.substring(start, start + maxLength);
+  return longestSubstring;
 }

@@ -4,7 +4,7 @@ String longestUniqueSubstring(String str) {
   String currentSubstring = "";
 
   // Mapa para almacenar la última posición de cada carácter en la cadena.
-  Map<String, int> lastSeen = {};
+  Map<String, int?> lastSeen = {};
 
   int start = 0; // Inicio de la subcadena actual.
 
@@ -13,8 +13,8 @@ String longestUniqueSubstring(String str) {
 
     // Si el carácter ya está en la subcadena actual,
     // actualizamos el inicio de la subcadena.
-    if (lastSeen.containsKey(currentChar) && lastSeen[currentChar] >= start) {
-      start = lastSeen[currentChar] + 1;
+    if (lastSeen.containsKey(currentChar) && lastSeen[currentChar]! >= start) {
+      start = lastSeen[currentChar]! + 1;
     }
 
     // Agregamos el carácter a la subcadena actual.

@@ -27,22 +27,3 @@ void main() {
   print(djo.toString());
   print(youssef.toString());
 }
-youssef@Holberton/Dart$ dart 6-main.dart
-<===========Json=========>:
-
-
-{id: 1, name: Djo, age: 25, height: 1.89}
-
-
-<===========Test1===========>:
-
-
-User(id : 1 ,name: Djo, age: 25, height: 1.89, Password: true)
-User(id : 3 ,name: Youssef, age: 26, height: 1.9, Password: true)
-
-
-<===========Test2===========>:
-
-
-User(id : 1 ,name: Djo, age: 25, height: 1.89, Password: false)
-User(id : 3 ,name: Youssef, age: 26, height: 1.9, Password: true)

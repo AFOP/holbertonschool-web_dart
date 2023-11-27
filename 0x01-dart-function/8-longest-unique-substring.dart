@@ -3,10 +3,9 @@ String longestUniqueSubstring(String str) {
   String longestSubstring = "";
   String currentSubstring = "";
 
-  // Mapa para almacenar la última posición de cada carácter en la cadena.
   Map<String, int?> lastSeen = {};
 
-  int start = 0; // Inicio de la subcadena actual.
+  int start = 0; 
 
   for (int end = 0; end < n; end++) {
     String currentChar = str[end];

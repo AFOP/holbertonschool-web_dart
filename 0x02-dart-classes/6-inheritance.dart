@@ -13,19 +13,34 @@ class User {
     required this.name,
     required this.age,
     required this.height,
-    required String user_password,
-  }) : user_password = Password(value: user_password);
+    required dynamic user_password,
+  }) : user_password = _createPassword(user_password);
 
   // Nuevo constructor para inicialización sin modificar main
-  User.init() : id = 0, name = '', age = 0, height = 0, user_password = Password(value: '');
+  User.init()
+      : id = 0,
+        name = '',
+        age = 0,
+        height = 0,
+        user_password = Password(value: '');
 
   // Nuevo método para inicialización desde un mapa
-  void fromJson(Map<dynamic, dynamic> json) {
-    id = json['id'] ?? 0;
-    name = json['name'] ?? '';
-    age = json['age'] ?? 0;
-    height = json['height'] ?? 0.0;
-    user_password = Password(value: json['user_password'] ?? '');
+  User.fromJson(Map<dynamic, dynamic> json)
+      : id = json['id'] ?? 0,
+        name = json['name'] ?? '',
+        age = json['age'] ?? 0,
+        height = json['height'] ?? 0.0,
+        user_password = _createPassword(json['user_password']);
+
+  static Password _createPassword(dynamic value) {
+    if (value is Password) {
+      return value;
+    } else if (value is String) {
+      return Password(value: value);
+    } else {
+      // Si no es una cadena ni una instancia de Password, crea una instancia con un valor vacío
+      return Password(value: '');
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -40,6 +55,6 @@ class User {
 
   @override
   String toString() {
-    return 'User(id : $id ,name: $name, age: $age, height: $height, ${user_password})';
+    return 'Usuario(id : $id ,nombre: $name, edad: $age, altura: $height, ${user_password})';
   }
 }

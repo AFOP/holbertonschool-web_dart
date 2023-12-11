@@ -32,5 +32,5 @@ Future<double> calculateTotalPriceFromMain(String userOrders) async {
     }
   }
 
-  return total;
+  return total == -1.0 ? total.toInt() : total;
 }

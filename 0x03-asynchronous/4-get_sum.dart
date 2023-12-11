@@ -23,7 +23,13 @@ Future<double> calculateTotalPriceFromMain(String userOrders) async {
   double total = 0;
   for (final order in orders) {
     final productPrice = await fetchProductPrice(order);
-    total += double.parse(productPrice);
+    final parsedPrice = double.tryParse(productPrice);
+
+    if (parsedPrice != null) {
+      total += parsedPrice;
+    } else {
+      return -1;
+    }
   }
 
   return total;

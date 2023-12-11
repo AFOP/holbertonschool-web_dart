@@ -28,9 +28,11 @@ Future<double> calculateTotalPriceFromMain(String userOrders) async {
     if (parsedPrice != null) {
       total += parsedPrice;
     } else {
+      // Si la conversión a double falla, puedes manejar el error aquí
       return -1;
     }
   }
 
-  return total == -1.0 ? total.toInt() : total;
+  // Devolver un valor double
+  return total == -1.0 ? -1 : total;
 }
